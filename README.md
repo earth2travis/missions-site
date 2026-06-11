@@ -43,20 +43,20 @@ Starts the built Worker locally (uses `miniflare`).
 
 ### Deploy
 
-> Human gate required. Set `CLOUDFLARE_API_TOKEN` in your environment before deploying.
+Build, then run the deploy script (retrieves credentials from 1Password automatically):
 
 ```sh
-# Preview to dev namespace (no credentials needed for local preview)
-npx wrangler dev
-
-# Preview to staging namespace
-CLOUDFLARE_API_TOKEN=*** npx wrangler deploy --env staging
-
-# Production deploy (human gate required)
-CLOUDFLARE_API_TOKEN=*** npx wrangler deploy --env production
+npm run build
+./deploy-ssr.sh
 ```
 
-`wrangler.toml` is pre-configured for all three environments. No hardcoded URLs.
+The script is at the project root: `./deploy-ssr.sh`.
+
+For preview without credentials:
+
+```sh
+npx wrangler dev
+```
 
 ---
 
