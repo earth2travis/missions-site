@@ -1,0 +1,207 @@
+/**
+ * app/globals.css — Monochrome design system
+ * 
+ * RULES:
+ *   - Strictly grayscale. No chromatic color in any computed style.
+ *   - Cyberpunk minimalist: monospace accents, geometric shapes, high contrast.
+ *   - System font stack. No external font imports.
+ *   - All values reference CSS custom properties.
+ */
+
+/* ─── Design tokens ─────────────────────────────────────────── */
+:root {
+  /* Palette — grayscale only */
+  --color-bg:        #f2f2f2;
+  --color-surface:   #e8e8e8;
+  --color-border:    #cccccc;
+  --color-muted:     #999999;
+  --color-body-text: #1a1a1a;
+  --color-inverse-text: #f2f2f2;
+  --color-accent:    #4a4a4a;
+  --color-accent-light: #eeeeee;
+  --color-button-bg: #1a1a1a;
+  --color-button-text: #f2f2f2;
+
+  /* Typography */
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", "Fira Code", "Courier New", monospace;
+
+  /* Scale (rem-based, respects user font-size preference) */
+  --text-xs:   0.75rem;   /* 12px */
+  --text-sm:   0.875rem;  /* 14px */
+  --text-base: 1rem;      /* 16px */
+  --text-lg:   1.25rem;  /* 20px */
+  --text-xl:   1.5rem;    /* 24px */
+  --text-2xl:  2rem;      /* 32px */
+  --text-3xl:  3rem;      /* 48px */
+
+  /* Spacing */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+
+  /* Layout */
+  --max-width: 72rem;
+  --gutter:    var(--space-6);
+
+  /* Borders */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --border-width: 1px;
+
+  /* Timing */
+  --transition: 150ms ease;
+}
+
+/* ─── Reset ─────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-body-text);
+  line-height: 1.6;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Accessibility ─────────────────────────────────────────── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+a {
+  color: var(--color-body-text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity var(--transition);
+}
+
+a:hover {
+  opacity: 0.65;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--color-body-text);
+  outline-offset: 2px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-body-text);
+  outline-offset: 2px;
+}
+
+/* ─── Scrollbar (grayscale only) ────────────────────────────── */
+::-webkit-scrollbar         { width: 6px; height: 6px; }
+::-webkit-scrollbar-track  { background: var(--color-surface); }
+::-webkit-scrollbar-thumb  { background: var(--color-border); border-radius: var(--radius-sm); }
+::-webkit-scrollbar-thumb:hover { background: var(--color-muted); }
+
+/* ─── Selection ─────────────────────────────────────────────── */
+::selection {
+  background-color: var(--color-body-text);
+  color: var(--color-inverse-text);
+}
+
+/* ─── Header ───────────────────────────────────────────────── */
+.site-header {
+  border-bottom: var(--border-width) solid var(--color-border);
+  background: var(--color-bg);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-body-text);
+}
+
+.nav-brand:hover { opacity: 1; }
+
+/* ─── Main ──────────────────────────────────────────────────── */
+.page-content {
+  flex: 1;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  width: 100%;
+  padding: var(--space-16) var(--gutter);
+}
+
+/* ─── Footer ────────────────────────────────────────────────── */
+.site-footer {
+  border-top: var(--border-width) solid var(--color-border);
+  padding: var(--space-8) var(--gutter);
+  text-align: center;
+  font-size: var(--text-xs);
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+}
+
+/* ─── Placeholder slot marker ───────────────────────────────── */
+/* Visible dev-mode indicator for empty content slots */
+.content-slot[data-slot]::before {
+  content: attr(data-slot);
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-muted);
+  border-left: 2px dashed var(--color-border);
+  padding-left: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+/* ─── Utilities ─────────────────────────────────────────────── */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.mono { font-family: var(--font-mono); }
+.uppercase { text-transform: uppercase; letter-spacing: 0.1em; }

@@ -1,0 +1,34 @@
+# wrangler.toml — Cloudflare Workers configuration
+#
+# Human gate required before deployment.
+# Do NOT hardcode any production URLs. Domain is set at deploy time via:
+#   wrangler deploy --name <worker-name> --env production
+# or by configuring routes in this file.
+#
+# Credentials note (for operators):
+#   Cloudflare deploy token → 1Password vault "Operations" item "Cloudflare"
+#   Set CLOUDFLARE_API_TOKEN in your environment before deploying.
+
+name = "missions-site"
+compatibility_date = "2024-11-27"
+
+# ─── Environments ────────────────────────────────────────────
+# dev: local-preview (no credentials required)
+[env.dev]
+name = "missions-site-dev"
+
+# staging: preview deploy path (credentials required)
+[env.staging]
+name = "missions-site-staging"
+
+# production: full deploy (human gate required)
+[env.production]
+name = "missions-site"
+routes = [
+  # CUSTOM_DOMAIN_SLOT: add custom domain routing here
+  # { pattern = "missions.example.com", zone_id = "<ZONE_ID>" }
+]
+
+# ─── Build output ─────────────────────────────────────────────
+# vinext build → dist/standalone/missions-site.js when output:"standalone"
+# [env.production.build] is not needed; vinext handles it
