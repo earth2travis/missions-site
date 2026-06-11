@@ -5,9 +5,7 @@
 #   wrangler deploy --name <worker-name> --env production
 # or by configuring routes in this file.
 #
-# Credentials note (for operators):
-#   Cloudflare deploy token → 1Password vault "Operations" item "Cloudflare"
-#   Set CLOUDFLARE_API_TOKEN in your environment before deploying.
+# Set CLOUDFLARE_API_TOKEN in your environment before deploying.
 
 name = "missions-site"
 compatibility_date = "2024-11-27"

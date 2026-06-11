@@ -43,18 +43,17 @@ Starts the built Worker locally (uses `miniflare`).
 
 ### Deploy
 
-> **Human gate.** Credentials live in 1Password vault `Operations`, item `Cloudflare`.
-> Set `CLOUDFLARE_API_TOKEN` before deploying.
+> Human gate required. Set `CLOUDFLARE_API_TOKEN` in your environment before deploying.
 
 ```sh
 # Preview to dev namespace (no credentials needed for local preview)
 npx wrangler dev
 
 # Preview to staging namespace
-CLOUDFLARE_API_TOKEN=<token> npx wrangler deploy --env staging
+CLOUDFLARE_API_TOKEN=*** npx wrangler deploy --env staging
 
 # Production deploy (human gate required)
-CLOUDFLARE_API_TOKEN=<token> npx wrangler deploy --env production
+CLOUDFLARE_API_TOKEN=*** npx wrangler deploy --env production
 ```
 
 `wrangler.toml` is pre-configured for all three environments. No hardcoded URLs.
