@@ -20,6 +20,7 @@
     "@cloudflare/workers-types": "^4.20241127.0",
     "@vitejs/plugin-react": "^6.0.0",
     "@vitejs/plugin-rsc": "^0.5.26",
+    "react-server-dom-webpack": "^19.2.7",
     "vinext": "0.1.1",
     "vite": "^8.0.0",
     "wrangler": "^3.0.0"
